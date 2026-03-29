@@ -70,8 +70,11 @@
       if (!valid) return;
 
       var submitBtn = form.querySelector('[type=submit]');
+      if (submitBtn.disabled) return;
       submitBtn.disabled = true;
-      submitBtn.textContent = t('form.submitting') || 'Надсилаємо...';
+      var submitSpan = submitBtn.querySelector('span') || submitBtn;
+      var originalText = submitSpan.textContent;
+      submitSpan.textContent = t('form.submitting') || 'Надсилаємо...';
 
       var data = { name: name, phone: phone, equipment: equipment, comment: comment, lang: getLang() };
 

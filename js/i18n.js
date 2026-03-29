@@ -28,16 +28,28 @@
     return val != null ? val : null;
   }
 
+  var HTML_KEYS = ['about.p1', 'about.p3'];
+
   function applyTranslations(lang) {
     var t = window.TRANSLATIONS && window.TRANSLATIONS[lang];
-    if (!t) return;
+    if (!t) {
+      console.warn('Translations not loaded for:', lang);
+      t = window.TRANSLATIONS && window.TRANSLATIONS['uk'];
+      if (!t) return;
+    }
 
-    // data-i18n — innerHTML
+    // data-i18n — textContent by default, innerHTML only for HTML_KEYS
     var els = document.querySelectorAll('[data-i18n]');
     els.forEach(function (el) {
       var key = el.getAttribute('data-i18n');
       var val = getTranslation(t, key);
-      if (val !== null) el.innerHTML = val;
+      if (val !== null) {
+        if (HTML_KEYS.indexOf(key) !== -1) {
+          el.innerHTML = val;
+        } else {
+          el.textContent = val;
+        }
+      }
     });
 
     // data-i18n-text — textContent (safe, no HTML)
