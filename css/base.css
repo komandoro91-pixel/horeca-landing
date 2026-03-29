@@ -1,0 +1,119 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+img { display: block; max-width: 100%; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol { list-style: none; }
+
+/* ============================================
+   TYPOGRAPHY
+============================================ */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 7vw, 96px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.5vw, 72px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3.5vw, 48px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ============================================
+   LAYOUT UTILS
+============================================ */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.section {
+  padding: var(--space-lg) 0;
+}
+
+/* diagonal clip variants */
+.clip-down {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 32px), 0 100%);
+  padding-bottom: calc(var(--space-xl) + 32px);
+}
+
+.clip-up {
+  clip-path: polygon(0 32px, 100% 0, 100% 100%, 0 100%);
+  padding-top: calc(var(--space-xl) + 32px);
+  margin-top: -32px;
+}
+
+.clip-both {
+  clip-path: polygon(0 32px, 100% 0, 100% calc(100% - 32px), 0 100%);
+  padding: calc(var(--space-xl) + 32px) 0;
+  margin-top: -32px;
+}
+
+/* Shared section header */
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-head--center { align-items: center; text-align: center; }
+
+.section-divider {
+  width: 60px;
+  height: 3px;
+  background: var(--accent);
+}
+
+.section-head--center .section-divider { margin: 0 auto; }
